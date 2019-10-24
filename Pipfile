@@ -10,6 +10,7 @@ django = "*"
 mysqlclient = "*"
 psycopg2 = "*"
 dj-database-url = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
