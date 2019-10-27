@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+{% block navbar-login %}class="active"{% endblock %}
+
+{% block banner %} main-banner inner {% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active">Login</li>
+</ol>
+
+<!-- login and register form -->
+<div class="login-form section text-center py-5">
+    <div class="container">
+        <div class="ban-buttons">
+            <a href="{% url 'login' %}" class="btn active">Login</a>
+            <a href="{% url 'register' %}" class="btn">Register</a>
+        </div>
+        <div id="loginbox" style="margin-top:30px;" class="mainbox  loginbox">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Login</div>
+                    <div class="fpassword">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <div style="padding-top:30px" class="panel-body">
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                    <form id="loginform" class="form-horizontal" action="" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user" style="margin: 15px 15px;"></i>
+                            </span>
+                            <input id="username" type="text" class="form-control" name="username" value="" placeholder="Username" required>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-lock" style="margin: 15px 15px;"></i>
+                            </span>
+                            <input id="login-password" type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        {% if messages %}
+                        <ul>
+                        {% for i in messages %}
+                        <li class="{{ message.tags }}">{{i}}</li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <div style="margin-top:10px" class="form-group">
+                            <!-- Button -->
+                            <div class="col-sm-12 controls">
+                                <a id="btn-login" class="btn active">Login </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                    Don't have an account!
+                                    <a href="{% url 'register' %}">
+                                        Register Here
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% if messages %}
+                        <ul>
+                            {% for i in messages %}
+                            <li>{{i}}</li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--//login and register form ends here-->
+{% endblock %}
