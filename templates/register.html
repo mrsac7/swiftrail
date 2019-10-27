@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+{% block navbar-register %}class="active"{% endblock %}
+
+{% block banner %} main-banner inner {% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active">Register</li>
+</ol>
+
+<!-- login and register form -->
+<div class="login-form section text-center py-5">
+    <div class="container">
+        <div class="ban-buttons">
+            <a href="{% url 'login' %}" class="btn">Login</a>
+            <a href="{% url 'register' %}" class="btn active">Register</a>
+        </div>
+        <div id="signupbox" style=" margin-top:50px" class="mainbox loginbox">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Register</div>
+                </div>
+                <div class="panel-body">
+                    <form id="signupform" class="form-horizontal" action="" method="post">
+                        {% csrf_token %}
+                        <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Email</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9 form-75">
+                                <input type="email" class="form-control" name="email" placeholder="Email Address" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <label class="col-md-3 col-sm-3 col-xs-3 control-label">Username</label>
+                                <div class="col-md-9 col-sm-9 col-xs-9 form-75">
+                                    <input type="text" class="form-control" name="username" placeholder="Username" required="">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">First Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9 form-75">
+                                <input type="text" class="form-control" name="first_name" placeholder="First Name" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Last Name</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9 form-75">
+                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Password</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9 form-75">
+                                <input type="password" class="form-control" name="password1" placeholder="Password" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Confirm&nbsp;Password</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9 form-75">
+                                <input type="password" class="form-control" name="password2" placeholder="Password" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 col-xs-3 control-label">Mobile Number</label>
+                            <div class="col-md-9 col-sm-9 col-xs-9 form-75">
+                                <input type="tel" class="form-control" name="contact" placeholder="Mobile Number" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!-- Button -->
+                            <div class="col-sm-12 controls">
+                                <a id="btn-login" class="btn active">Register</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--//login and register form ends here-->
+{% endblock %}
