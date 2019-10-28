@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %} PNR Status {% endblock %}
+{% block navbar-pnr-status %}class="active"{% endblock %}
+
+{% block banner %} main-banner inner {% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item active">PNR Status</li>
+</ol>
+
+<!-- pnr status form -->
+<div class="section text-center py-5">
+    <div class="container">
+        <div style="margin-top:30px;" class="mainbox ">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form id="pnr-form" class="form-horizontal" action="" method="post">
+                        {% csrf_token %}
+                        <div id="pnr-alert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="container">
+                                <div class="row">
+                                    <label class="col-md-4 col-sm-4 col-xs-4 control-label pr-5"><b>PNR Number:</b></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <input type="text" class="form-control" name="pnr" placeholder="Enter PNR Number" required="">
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="col-md-4 col-sm-4 col-xs-4 controls">
+                                        <a id="btn-pnr" class="btn active float-left">Get Status</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-info" style="border: 1px solid black">
+                <div class="panel-heading">
+                    <div class="panel-title">PNR Status</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mr-2">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>PNR Number</th>
+                                        <td>6635537990</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Train Number</th>
+                                        <td>11040</td>
+                                    </tr>
+                                    <tr>
+                                        <th>From Station</th>
+                                        <td>NAME (CODE)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Boarding Point</th>
+                                        <td>NAME (CODE)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Class</th>
+                                        <td>AC III Tier</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Charting Status</th>
+                                        <td>Chart Prepared</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ticket Fare</th>
+                                        <td>Rs 1000.00</td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="ml-2">
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>Date of Journey</th>
+                                        <td>30 Oct 2019</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Train Name</th>
+                                        <td>TRAIN NAME</td>
+                                    </tr>
+                                    <tr>
+                                        <th>To Station</th>
+                                        <td>NAME (CODE)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Reservation Upto</th>
+                                        <td>NAME (CODE)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>No. of Passengers</th>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Upgraded Class</th>
+                                        <td>AC III Tier</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quota</th>
+                                        <td>General (GEN)</td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center mt-5" style="text-align: center; font-size: 1.1rem">
+                            <b>PASSENGER DETAILS</b>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>S. No.</th>
+                                            <th>Age</th>
+                                            <th>Booking Status (Coach No, Berth No, Quota)</th>
+                                            <th>Current Status (Coach No, Berth No, Quota</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Passenger 1</td>
+                                            <td>19  </td>
+                                            <td>CNF/B1/14/UB/GN</td>
+                                            <td>CNF/B1/14/UB/GN</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--//pnr status form ends here-->
+{% endblock %}
