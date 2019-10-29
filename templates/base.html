@@ -19,17 +19,17 @@
     <!-- //Meta tag Keywords -->
 
     <!-- Custom-Files -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!-- Bootstrap-Core-CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <!-- Style-CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <!-- jquery-ui -->
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
     <!-- font-awesome-icons -->
     <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
-    <!-- //font-awesome-icons -->
-    <!-- /Fonts -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
-    <!-- //Fonts -->
 
 </head>
 
@@ -51,16 +51,16 @@
                     <ul class="menu mt-2">
                         {% block navbar %}
                         <li {% block navbar-home %}{% endblock %}><a href="{% url 'index' %}">Home</a></li>
-                        <li {% block navbar-pnrstatus %}{% endblock %}><a href="#">PNR Status</a></li>
-                        <li {% block navbar-bookticket %}{% endblock %}><a href="#">Book Ticket</a></li>
-                        <li {% block navbar-trainenquiry %}{% endblock %}>
+                        <li {% block navbar-pnr-status %}{% endblock %}><a href="{% url 'pnr-status' %}">PNR Status</a></li>
+                        <li {% block navbar-book-ticket %}{% endblock %}><a href="{% url 'book-ticket' %}">Book Ticket</a></li>
+                        <li {% block navbar-train-enquiry %}{% endblock %}>
                             <!-- First Tier Drop Down -->
                             <label for="drop-2" class="toggle">Train Enquiry <span class="fa fa-angle-down" aria-hidden="true"></span> </label>
-                            <a href="#">Train Enquiry <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                            <a href="{% url 'train-enquiry' %}">Train Enquiry <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                             <input type="checkbox" id="drop-2" />
                             <ul>
-                                <li><a href="#">Train between Stations</a></li>
-                                <li><a href="#">Train Schedule</a></li>
+                                <li {% block navbar-train-search %}{% endblock %}><a href="{% url 'train-search' %}">Train between Stations</a></li>
+                                <li {% block navbar-train-schedule %}{% endblock %}><a href="{% url 'train-schedule' %}">Train Schedule</a></li>
                             </ul>
                         </li>
                         <li {% block navbar-login %}{% endblock %}><a href="{% url 'login' %}">Login</a></li>
@@ -121,16 +121,16 @@
                                     <a href="{% url 'index' %}">Home</a>
                                 </li>
                                 <li class="mt-3">
-                                    <a href="#">PNR Status</a>
+                                    <a href="{% url 'pnr-status' %}">PNR Status</a>
                                 </li>
                                 <li class="mt-3">
-                                    <a href="#">Book Tickets</a>
+                                    <a href="{% url 'book-ticket' %}">Book Tickets</a>
                                 </li>
                                 <li class="mt-3">
-                                    <a href="#">Train Between Stations</a>
+                                    <a href="{% url 'train-search' %}">Train Between Stations</a>
                                 </li>
                                 <li class="mt-3">
-                                    <a href="#">Train Schedule</a>
+                                    <a href="{% url 'train-schedule' %}">Train Schedule</a>
                                 </li>
                             </ul>
                         </div>
@@ -167,6 +167,10 @@
     </footer>
     <!-- //footer -->
 
+    <!-- jquery and jquery-ui -->
+    <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
 </body>
 
 </html>

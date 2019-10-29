@@ -472,13 +472,17 @@ li > a:only-child:after {
 
 .ban-buttons a.active,
 .ban-buttons a:hover {
-    opacity: 0.8;
+    background: #eee;
 }
 
 a.btn.active {
     background: #10adfb;
     color: #fff;
     border: #10adfb;
+}
+
+a.btn.active.bluebtn:hover {
+    background: #0e9be1;
 }
 
 /*-- //place holder --*/
@@ -542,22 +546,22 @@ ul.events-icons.new-inf img {
 .bottom-gd,
 .bottom-gd2-active {
     background: #f8f9fa;
-    transition: 2s all;
-    -webkit-transition: 2s all;
-    -moz-transition: 2s all;
-    -ms-transition: 2s all;
-    -o-transition: 2s all;
+    transition: 1s all;
+    -webkit-transition: 1s all;
+    -moz-transition: 1s all;
+    -ms-transition: 1s all;
+    -o-transition: 1s all;
     box-shadow: 7px 7px 10px 0 rgba(76, 110, 245, .1);
     padding: 2em 0;
 }
 
 .bottom-gd2-active {
     background: #10adfb;
-    transition: 2s all;
-    -webkit-transition: 2s all;
-    -moz-transition: 2s all;
-    -ms-transition: 2s all;
-    -o-transition: 2s all;
+    transition: 1s all;
+    -webkit-transition: 1s all;
+    -moz-transition: 1s all;
+    -ms-transition: 1s all;
+    -o-transition: 1s all;
 }
 
 .bottom-gd:hover.f1 span,
@@ -782,6 +786,9 @@ ol.breadcrumb {
     background: none;
     margin: 0;
     padding: 1em 2em;
+    background: #fff;
+}
+ol.breadcrumb.grey {
     background: #eee;
 }
 li.breadcrumb-item {
@@ -789,7 +796,7 @@ li.breadcrumb-item {
     letter-spacing: 1px;
 }
 .breadcrumb-item.active {
-    color: #888;
+    color: #777;
 }
 li.breadcrumb-item a {
     color: #10adfb;
@@ -1109,7 +1116,7 @@ h4.sub-con-fo {
 }
 
 .footer-grid_section_w3layouts li a:hover {
-    opacity: 0.8;
+    color: #505050;
 }
 
 .footer-title h3 {
@@ -1462,6 +1469,10 @@ a.move-top span {
     background: #eee;
 }
 
+.register-form.section.text-center {
+    background: #eee;
+}
+
 .panel-info>.panel-heading {
     color: #ffffff;
     background-color: #272525;
@@ -1483,7 +1494,20 @@ a.move-top span {
 }
 
 a#btn-login {
-    width: 30%;
+    width: 33%;
+}
+
+a#btn-register {
+    width: 33%;
+}
+
+a#btn-pnr {
+    width: 40%;
+}
+
+a#btn-login:hover, a#btn-register:hover, a#btn-pnr:hover {
+    background: #0e9be1;
+    color: white;
 }
 
 button#btn-signup {
@@ -1492,6 +1516,11 @@ button#btn-signup {
 }
 
 .loginbox {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.registerbox {
     width: 60%;
     margin: 0 auto;
 }
@@ -1642,4 +1671,59 @@ h4.rad-txt span.abtxt1 {
 
 .form-group{
     margin-bottom: 35px;
+}
+
+.menu li.inactive a {
+    color: #555;
+}
+
+.bottom-gd:hover {
+    cursor: pointer;
+    background-color: #10adfb;
+}
+
+.bottom-gd:hover .icon-gd .fa {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    color: white;
+}
+
+.bottom-gd:hover .icon-gd-info p {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    color: white;
+}
+
+.bottom-gd:hover .fa {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    color: white;
+}
+
+.bottom-gd:hover p {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    color: white;
+}
+
+.table .thead-blue th {
+    color: #fff;
+    background-color: #008cd3;
+    border-color: #dee2e6;
+}
+
+th[rowspan], th[colspan] {
+    vertical-align: middle !important;
 }

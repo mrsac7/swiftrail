@@ -7,19 +7,19 @@
 
 {% block content %}
 
-<ol class="breadcrumb">
+<ol class="breadcrumb grey">
     <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
     <li class="breadcrumb-item active">Register</li>
 </ol>
 
 <!-- login and register form -->
-<div class="login-form section text-center py-5">
+<div class="register-form section text-center py-5">
     <div class="container">
         <div class="ban-buttons">
             <a href="{% url 'login' %}" class="btn">Login</a>
             <a href="{% url 'register' %}" class="btn active">Register</a>
         </div>
-        <div id="signupbox" style=" margin-top:50px" class="mainbox loginbox">
+        <div id="signupbox" style=" margin-top:50px" class="mainbox registerbox">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="panel-title">Register</div>
@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <a id="btn-login" class="btn active">Register</a>
+                                <a id="btn-register" class="btn active">Register</a>
                             </div>
                         </div>
                     </form>

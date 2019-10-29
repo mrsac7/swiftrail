@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block title %} Train Schedule {% endblock %}
+
+{% block navbar-train-enquiry %}class="active"{% endblock %}
+{% block navbar-train-search %}class="inactive"{% endblock %}
+
+{% block banner %} main-banner inner {% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'train-enquiry' %}">Train Enquiry</a></li>
+    <li class="breadcrumb-item active">Train Schedule</li>
+</ol>
+
+<!-- train schedule form -->
+<div class="section text-center py-5">
+    <div class="container">
+        <div style="margin-top:30px;" class="mainbox ">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <form id="train-schedule-form" class="form-horizontal" action="" method="post">
+                        {% csrf_token %}
+                        <div id="train-schedule-alert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="container">
+                                <div class="row">
+                                    <label class="col-md-4 col-sm-4 col-xs-4 control-label pr-5"><b>Train Number / Name:</b></label>
+                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                        <input type="text" class="form-control" name="train-no" placeholder="Enter Train Number / Name" required="">
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="col-md-4 col-sm-4 col-xs-4 controls">
+                                        <a id="btn-train-schedule" class="btn active float-left">Get Schedule</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div style="padding-top:20px" class="panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead class="thead-blue">
+                                        <tr>
+                                            <th rowspan="2">Train Number</th>
+                                            <th rowspan="2">Train Name</th>
+                                            <th rowspan="2">Source</th>
+                                            <th colspan="7">Runs On</th>
+                                        </tr>
+                                        <tr>
+                                            <th>MON</th>
+                                            <th>TUE</th>
+                                            <th>WED</th>
+                                            <th>THU</th>
+                                            <th>FRI</th>
+                                            <th>SAT</th>
+                                            <th>SUN</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TRAIN NO</td>
+                                            <td>TRAIN NAME</td>
+                                            <td>SOURCE</td>
+                                            <td>N</td>
+                                            <td>N</td>
+                                            <td>N</td>
+                                            <td>N</td>
+                                            <td>N</td>
+                                            <td>N</td>
+                                            <td>N</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead class="thead-blue">
+                                        <tr>
+                                            <th>S. No.</th>
+                                            <th>Station Code</th>
+                                            <th>Station Name</th>
+                                            <th>Arrival Time</th>
+                                            <th>Departure Time</th>
+                                            <th>Halt Time</th>
+                                            <th>Distance</th>
+                                            <th>Day</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>STATION CODE</td>
+                                            <td>STATION NAME</td>
+                                            <td>TIME</td>
+                                            <td>TIME</td>
+                                            <td>TIME</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>STATION CODE</td>
+                                            <td>STATION NAME</td>
+                                            <td>TIME</td>
+                                            <td>TIME</td>
+                                            <td>TIME</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--//train schedule form ends here-->
+{% endblock %}
