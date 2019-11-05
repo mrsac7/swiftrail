@@ -5,6 +5,7 @@ This is the repository for the ITW-II Project - Railway Management System.
 
 ## Setting up Development Environment
 
+ - Make sure `python` and `pip` are installed. Install `pipenv` by running `pip install pipenv`.
  - Install python dependencies using the command `pipenv install --ignore-pipfile` Please use only pipenv for managing dependencies (Follow this [link](https://realpython.com/pipenv-guide/) if you are new to pipenv).
  - To activate this project's virtualenv, run `pipenv shell`.
  - Alternatively, run a command inside the virtualenv with `pipenv run`.
