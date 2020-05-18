@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
 Django = "*"
@@ -12,6 +13,10 @@ dj-database-url = "*"
 gunicorn = "*"
 whitenoise = "*"
 psycopg2-binary = "*"
+social-auth-app-django = "*"
+django-sslserver = "*"
+instamojo-wrapper = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,4 +1,5 @@
 {% extends '../base.html' %}
+{% load train %}
 
 {% block title %} Ticket Booking {% endblock %}
 {% block navbar-book-ticket %}class="active"{% endblock %}
@@ -19,13 +20,19 @@
             <div class="panel panel-info">
                 <div class="panel-body">
                     <form id="train-search-form" class="form-horizontal" action="" method="post">
-                        {% csrf_token %}
-                        <div id="train-search-alert" style="display:none" class="alert alert-danger">
-                            <p>Error:</p>
-                            <span></span>
-                        </div>
                         <div class="form-group">
                             <div class="container">
+                                {% csrf_token %}
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="message">
+                                    <div class="alert alert-{{message.tags}} alert-dismissible text-center" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="$('.alert').remove()">&times;</button>
+                                        {{message}}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
                                 <div class="row">
                                     <div class="col-md-1 col-sm-1 col-xs-1"></div>
                                     <label class="col-md-4 col-sm-4 col-xs-4 control-label pr-5"><b>Journey Date:</b></label>
@@ -59,7 +66,7 @@
                                 </div>
                                 <div class="row mt-4 justify-content-center">
                                     <div class="col-md-4 col-sm-4 col-xs-4 controls">
-                                        <a id="btn-train-search" class="btn active">Submit</a>
+                                        <button type="submit" id="btn-train-search" class="btn active">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -70,6 +77,7 @@
             <div class="panel panel-info">
                 <div style="padding-top:20px" class="panel-body">
                     <div class="container">
+                        {% if is_t1 %}
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <table class="table table-bordered">
@@ -82,112 +90,76 @@
                                             <th>Arrival Time</th>
                                             <th>Travel Time</th>
                                             <th>Days of Run</th>
-                                            <th>Class</th>
                                             <th>Availability & Fare</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        {% for train, time, availability in t1 %}
                                         <tr>
-                                            <td>1</td>
-                                            <td>TRAIN NO</td>
-                                            <td>TRAIN NAME</td>
-                                            <td>TIME</td>
-                                            <td>TIME</td>
-                                            <td>TIME</td>
-                                            <td>Mo, Tu, We, Th</td>
-                                            <td>
-                                                <select class="form-control" name="flexible" required="">
-                                                    <option>SL</option>
-                                                    <option>2A</option>
-                                                    <option>3A</option>
-                                                </select>
-                                            </td>
-                                            <td><a id="btn-train-search" class="btn btn-sm active">Get</a></td>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ train.train_no }}</td>
+                                            <td>{{ train.train_name }}</td>
+                                            <td>{{ time.source.0 }}</td>
+                                            <td>{{ time.destination.0 }}</td>
+                                            <td>{{ time|get_travel_time }}</td>
+                                            <td>{{ train.run_days }}</td>
+                                            <td><a id="get-{{ train.train_no }}" class="btn btn-sm active">Get</a></td>
                                         </tr>
-                                        <tr>
+                                        
+                                        <tr id="{{train.train_no}}">
                                             <td colspan="9">
                                                 <div class = "row">
-                                                    <div class = "col-md-2" style="padding-right:6px;" >
+                                                    <div class = "col-md-3" style="padding-right:6px;" >
                                                         <div class="product-shoe-info shoe text-center">
                                                             <div>
-                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">DATE (DAY)</span>
-                                                            <p style="color:green; font-size:13.5px;"><strong>AVAILABLE</strong></p>
-                                                            <a class="btn active" style="padding:5px; font-size:13.5px" href="{% url 'book-now' %}">Book Now</a>
+                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">1A</span>
+                                                            <p style="color:green; font-size:13.5px;"><strong>{{ availability.first_ac }}</strong></p>
+                                                            <a id="book-{{ train.train_no }}-1a" class="btn active" style="padding:5px; font-size:13.5px" href="{% url 'book-now' train.train_no journey_date '1A' source destination %}">Book Now</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class = "col-md-2" style="padding-left:6px; padding-right: 6px;" >
+
+                                                    <div class = "col-md-3" style="padding-right:6px;" >
                                                         <div class="product-shoe-info shoe text-center">
                                                             <div>
-                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">DATE (DAY)</span>
-                                                            <p style="color:#B22222; font-size:13.5px;"><strong>REGRET</strong></p>
-                                                            <a id="btn-train-search" class="btn active" style="visibility: hidden;padding:5px; font-size:13.5px">Book Now</a>
+                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">2A</span>
+                                                            <p style="color:green; font-size:13.5px;"><strong>{{ availability.second_ac }}</strong></p>
+                                                            <a id="book-{{ train.train_no }}-2a" class="btn active" style="padding:5px; font-size:13.5px" href="{% url 'book-now' train.train_no journey_date '2A' source destination %}">Book Now</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class = "col-md-2" style="padding-left:6px; padding-right: 6px;" >
+
+                                                    <div class = "col-md-3" style="padding-right:6px;" >
                                                         <div class="product-shoe-info shoe text-center">
                                                             <div>
-                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">DATE (DAY)</span>
-                                                            <p style="color:#B22222; font-size:13.5px;"><strong>REGRET</strong></p>
-                                                            <a id="btn-train-search" class="btn active" style="visibility: hidden;padding:5px; font-size:13.5px">Book Now</a>
+                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">3A</span>
+                                                            <p style="color:green; font-size:13.5px;"><strong>{{ availability.third_ac }}</strong></p>
+                                                            <a id="book-{{ train.train_no }}-3a" class="btn active" style="padding:5px; font-size:13.5px" href="{% url 'book-now' train.train_no journey_date '3A' source destination %}">Book Now</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class = "col-md-2" style="padding-left:6px; padding-right: 6px;" >
+
+                                                    <div class = "col-md-3" style="padding-right:6px;" >
                                                         <div class="product-shoe-info shoe text-center">
                                                             <div>
-                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">DATE (DAY)</span>
-                                                            <p style="color:#B22222; font-size:13.5px;"><strong>REGRET</strong></p>
-                                                            <a id="btn-train-search" class="btn active" style="visibility: hidden;padding:5px; font-size:13.5px">Book Now</a>
+                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">SL</span>
+                                                            <p style="color:green; font-size:13.5px;"><strong>{{ availability.sleeper }}</strong></p>
+                                                            <a id="book-{{ train.train_no }}-sl" class="btn active" style="padding:5px; font-size:13.5px" href="{% url 'book-now' train.train_no journey_date 'SL' source destination %}">Book Now</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class = "col-md-2" style="padding-left:6px; padding-right: 6px;" >
-                                                        <div class="product-shoe-info shoe text-center">
-                                                            <div>
-                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">DATE (DAY)</span>
-                                                            <p style="color:#B22222; font-size:13.5px;"><strong>REGRET</strong></p>
-                                                            <a id="btn-train-search" class="btn active" style="visibility: hidden;padding:5px; font-size:13.5px">Book Now</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class = "col-md-2" style="padding-left:6px;" >
-                                                        <div class="product-shoe-info shoe text-center">
-                                                            <div>
-                                                            <span style="color:black; font-size:13.5px; font-weight:bold;">DATE (DAY)</span>
-                                                            <p style="color:green; font-size:13.5px;"><strong>AVAILABLE</strong></p>
-                                                            <a class="btn active" style="padding:5px; font-size:13.5px" href="{% url 'book-now' %}">Book Now</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>TRAIN NO</td>
-                                            <td>TRAIN NAME</td>
-                                            <td>TIME</td>
-                                            <td>TIME</td>
-                                            <td>TIME</td>
-                                            <td>Mo, Tu, We, Th</td>
-                                            <td>
-                                                <select class="form-control" name="flexible" required="">
-                                                    <option>SL</option>
-                                                    <option>2A</option>
-                                                    <option>3A</option>
-                                                </select>
-                                            </td>
-                                            <td><a id="btn-train-search" class="btn btn-sm active">Get</a></td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        
+                        {% endif %}
+                        {% if is_t2 %}
                         <div class="row mt-4 ml-1" style="text-align: center; font-size: 1.1rem">
                             <b>ALTERNATE TRAINS:</b>
                         </div>
@@ -263,11 +235,28 @@
                                 </table>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <!--//train between stations form ends here-->
+{% endblock %}
+
+{% block script %}
+
+{% if messages %}
+{% for message in messages %}
+    window.setTimeout(function () {
+        $(".alert-{{message.tags}}").fadeTo(1000, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 2000);
+{% endfor %}
+{% endif %}
+
 {% endblock %}
